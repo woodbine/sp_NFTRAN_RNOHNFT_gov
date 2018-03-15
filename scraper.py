@@ -96,10 +96,9 @@ soup = BeautifulSoup(html, 'lxml')
 
 #### SCRAPE DATA
 
-navs = soup.find_all('fieldset')[3]
-blocks = navs.find_all('a')
+blocks = soup.find_all('a')
 for block in blocks:
-    if '.csv' in block['href'] or '.xls' in block['href'] or '.xlsx' in block['href'] or '.pdf' in block['href']:
+    if ('.csv' in block['href'] or '.xls' in block['href'] or '.xlsx' in block['href'] or '.pdf' in block['href']) and 'Trust spend' in block.text:
         link = block['href']
         title = block.text.strip().split('-')[-1].strip()
         csvMth = title.split()[0][:3]
